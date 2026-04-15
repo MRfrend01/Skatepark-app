@@ -2,7 +2,45 @@
     ViewData["Title"] = "Home Page";
 }
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://learn.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+<h2>Rating</h2>
+
+<div id="rating">
+    <button onclick="setRating(1)">1</button>
+    <button onclick="setRating(2)">2</button>
+    <button onclick="setRating(3)">3</button>
+    <button onclick="setRating(4)">4</button>
+    <button onclick="setRating(5)">5</button>
 </div>
+
+<p id="result"></p>
+
+<script>
+    function setRating(value) {
+        document.getElementById("result").innerText = "Your rating: " + value;
+    }
+</script>
+<h2>Login</h2>
+
+<input type="text" placeholder="Email" />
+<input type="password" placeholder="Password" />
+<button>Login</button>
+
+<h2>Map</h2>
+<head>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+    <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+</head>
+
+<div id="map" style="height: 400px;"></div>
+
+<script>
+    var map = L.map('map').setView([58.5953, 25.0136], 7);
+
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+        attribution: '© OpenStreetMap'
+    }).addTo(map);
+
+    // Test marker
+    L.marker([59.437, 24.7536]).addTo(map)
+        .bindPopup("Tallinn Skatepark");
+</script>
