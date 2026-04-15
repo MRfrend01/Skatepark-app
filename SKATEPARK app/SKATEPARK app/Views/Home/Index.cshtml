@@ -24,3 +24,23 @@
 <input type="text" placeholder="Email" />
 <input type="password" placeholder="Password" />
 <button>Login</button>
+
+<h2>Map</h2>
+<head>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+    <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+</head>
+
+<div id="map" style="height: 400px;"></div>
+
+<script>
+    var map = L.map('map').setView([58.5953, 25.0136], 7);
+
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+        attribution: '© OpenStreetMap'
+    }).addTo(map);
+
+    // Test marker
+    L.marker([59.437, 24.7536]).addTo(map)
+        .bindPopup("Tallinn Skatepark");
+</script>
