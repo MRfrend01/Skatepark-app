@@ -1,6 +1,10 @@
-using System.Diagnostics;
+using Fluent.Infrastructure.FluentModel;
+using Microsoft.AspNet.Identity;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using SKATEPARK_app.Models;
+using SKATEPARK_app.Models.register;
+using System.Diagnostics;
 
 namespace SKATEPARK_app.Controllers
 {
@@ -17,6 +21,30 @@ namespace SKATEPARK_app.Controllers
         {
             return View();
         }
+        [HttpGet]
+        public IActionResult Register()
+        {
+            return View();
+        }
+        public async Task<IActionResult> Register(RegisterViewModel model)
+        {
+            if (ModelState.IsValid)
+            {
+                var user = new ApplicationUser()
+                {
+                    UserName = model.Email,
+                    Email = model.Email,
+                    ProfileType = model.ProfileType,
+                    DisplayName = model.DisplayName,
+                    AvatarImageID = Guid.NewGuid().ToString(),
+                };
+                var result = await UserManager.CreateAsync(user, model.Password);
+                }
+
+                //
+
+                return RedirectToAction("Index", "Home");
+            }
 
         public IActionResult Privacy()
         {
